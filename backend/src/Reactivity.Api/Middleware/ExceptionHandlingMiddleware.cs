@@ -39,6 +39,16 @@ public class ExceptionHandlingMiddleware(RequestDelegate next, ILogger<Exception
                 Status = (int)HttpStatusCode.Unauthorized,
                 Title = exception.Message
             },
+            ForbiddenAccessException => new ProblemDetails
+            {
+                Status = (int)HttpStatusCode.Forbidden,
+                Title = exception.Message
+            },
+            ConflictException => new ProblemDetails
+            {
+                Status = (int)HttpStatusCode.Conflict,
+                Title = exception.Message
+            },
             _ => new ProblemDetails
             {
                 Status = (int)HttpStatusCode.InternalServerError,
