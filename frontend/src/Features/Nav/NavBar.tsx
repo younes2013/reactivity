@@ -18,13 +18,20 @@ function NavBar() {
           variant="h6"
           component={RouterLink}
           to="/"
-          sx={{ flexGrow: 1, color: "inherit", textDecoration: "none" }}
+          sx={{ color: "inherit", textDecoration: "none", mr: 3 }}
         >
           Reactivity
         </Typography>
+        <Button color="inherit" component={RouterLink} to="/activities">
+          Activités
+        </Button>
+        <Box sx={{ flexGrow: 1 }} />
         <Box sx={{ display: "flex", gap: 1 }}>
           {authStore.isAuthenticated ? (
             <>
+              <Button color="inherit" component={RouterLink} to="/my-inscriptions">
+                Mes inscriptions
+              </Button>
               <Typography sx={{ alignSelf: "center", mr: 1 }}>
                 {authStore.user?.displayName}
               </Typography>

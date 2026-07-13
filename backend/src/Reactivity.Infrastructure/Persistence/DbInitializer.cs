@@ -33,14 +33,14 @@ public static class DbInitializer
             dbContext.Activities.AddRange(
                 new Activity
                 {
-                    Title = "Randonnée au Mont Royal",
+                    Title = "Randonnée dans la Vallée de l'Ourika",
                     Date = DateTime.UtcNow.AddDays(7),
-                    Description = "Balade tranquille en groupe avec vue sur la ville.",
+                    Description = "Balade tranquille en groupe avec vue sur l'Atlas.",
                     Category = "Randonnée",
-                    City = "Montréal",
-                    Venue = "Parc du Mont-Royal",
-                    Latitude = 45.5048,
-                    Longitude = -73.5878,
+                    City = "Marrakech",
+                    Venue = "Vallée de l'Ourika",
+                    Latitude = 31.5167,
+                    Longitude = -7.6667,
                     OwnerId = demoUser.Id
                 },
                 new Activity
@@ -49,10 +49,10 @@ public static class DbInitializer
                     Date = DateTime.UtcNow.AddDays(14),
                     Description = "Tournoi 3x3 ouvert à tous niveaux.",
                     Category = "Sport collectif",
-                    City = "Montréal",
-                    Venue = "Centre sportif Côte-des-Neiges",
-                    Latitude = 45.4966,
-                    Longitude = -73.6280,
+                    City = "Rabat",
+                    Venue = "Complexe sportif Prince Moulay Abdellah",
+                    Latitude = 34.0084,
+                    Longitude = -6.8362,
                     OwnerId = demoUser.Id
                 },
                 new Activity
@@ -61,10 +61,10 @@ public static class DbInitializer
                     Date = DateTime.UtcNow.AddDays(21),
                     Description = "Initiation à la peinture acrylique, matériel fourni.",
                     Category = "Art",
-                    City = "Montréal",
-                    Venue = "Maison de la culture Plateau-Mont-Royal",
-                    Latitude = 45.5234,
-                    Longitude = -73.5820,
+                    City = "Casablanca",
+                    Venue = "Villa des Arts de Casablanca",
+                    Latitude = 33.5928,
+                    Longitude = -7.6192,
                     OwnerId = demoUser.Id
                 });
 
