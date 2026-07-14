@@ -1,32 +1,62 @@
-# React + TypeScript + Vite
+# Reactivity — Front-end
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+SPA React 19 + TypeScript, construite avec Vite. Gestion d'état via MobX, appels API via Axios, interface Material UI.
 
-Currently, two official plugins are available:
+## Structure du projet
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the Oxlint configuration
-
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
-
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+```
+src/
+├── App/
+│   ├── Api/           Clients Axios par domaine (authApi, activityApi, inscriptionApi)
+│   ├── Common/         Constantes, routes protégées
+│   ├── Layout/         Mise en page générale (NavBar, Footer, Outlet)
+│   ├── Models/          Types et interfaces TypeScript
+│   ├── Services/        Validation de formulaires, décodage JWT
+│   └── Stores/           Stores MobX (AuthStore, ActivityStore)
+├── Features/
+│   ├── Auth/             Pages Login, Register, Profile
+│   ├── Activities/       Pages Liste, Détail, Création, Mes inscriptions
+│   ├── HomePage/         Page d'accueil
+│   ├── Nav/              Barre de navigation
+│   └── Footer/           Pied de page
+├── App.tsx               Déclaration des routes
+└── main.tsx              Point d'entrée
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+## Installation
+
+Prérequis : Node.js ≥ 18
+
+```powershell
+cd frontend
+npm install
+cp .env.example .env   # ajuster VITE_API_URL si besoin
+npm run dev
+```
+
+L'application est servie sur `http://localhost:5173` et communique avec l'API sur l'URL définie dans `VITE_API_URL` (par défaut `http://localhost:5232/api`).
+
+## Scripts disponibles
+
+| Commande | Description |
+|---|---|
+| `npm run dev` | Démarrage en mode développement |
+| `npm run build` | Build de production (`tsc -b && vite build`) |
+| `npm run lint` | Vérification du code (Oxlint) |
+| `npm run preview` | Prévisualisation du build de production |
+
+## Authentification
+
+L'accès et le rafraîchissement de session sont gérés par `AuthStore` (MobX) : le token d'accès et le refresh token sont stockés dans `localStorage`, et un intercepteur Axios (`axiosClient.ts`) rafraîchit automatiquement le token d'accès en cas de réponse `401`.
+
+## Routes principales
+
+| Route | Description | Protégée |
+|---|---|---|
+| `/` | Accueil | Non |
+| `/login`, `/register` | Authentification | Non |
+| `/activities` | Liste des activités | Non |
+| `/activities/:id` | Détail d'une activité, inscription/désinscription | Non (l'inscription nécessite un compte) |
+| `/activities/new` | Créer une activité | Oui |
+| `/my-inscriptions` | Mes inscriptions | Oui |
+| `/profile` | Profil utilisateur | Oui |

@@ -1,4 +1,5 @@
 import {
+  Alert,
   Box,
   Button,
   Card,
@@ -31,9 +32,15 @@ function ActivityList() {
         )}
       </Stack>
 
+      {activityStore.error && (
+        <Alert severity="error" sx={{ mb: 2 }}>
+          {activityStore.error}
+        </Alert>
+      )}
+
       {activityStore.isLoading && <CircularProgress />}
 
-      {!activityStore.isLoading && activityStore.activities.length === 0 && (
+      {!activityStore.isLoading && !activityStore.error && activityStore.activities.length === 0 && (
         <Typography>Aucune activité pour le moment.</Typography>
       )}
 

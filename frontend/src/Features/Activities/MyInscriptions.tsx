@@ -1,4 +1,5 @@
 import {
+  Alert,
   Card,
   CardActionArea,
   CardContent,
@@ -22,9 +23,15 @@ function MyInscriptions() {
         Mes inscriptions
       </Typography>
 
+      {activityStore.error && (
+        <Alert severity="error" sx={{ mb: 2 }}>
+          {activityStore.error}
+        </Alert>
+      )}
+
       {activityStore.isLoading && <CircularProgress />}
 
-      {!activityStore.isLoading && activityStore.myInscriptions.length === 0 && (
+      {!activityStore.isLoading && !activityStore.error && activityStore.myInscriptions.length === 0 && (
         <Typography>Tu n'es inscrit à aucune activité pour le moment.</Typography>
       )}
 

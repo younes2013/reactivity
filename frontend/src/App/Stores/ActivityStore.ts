@@ -82,10 +82,15 @@ class ActivityStore {
 
   async fetchMyInscriptions(): Promise<void> {
     this.isLoading = true;
+    this.error = null;
     try {
       const inscriptions = await inscriptionApi.getMine();
       runInAction(() => {
         this.myInscriptions = inscriptions;
+      });
+    } catch {
+      runInAction(() => {
+        this.error = "Impossible de charger tes inscriptions.";
       });
     } finally {
       runInAction(() => {

@@ -9,6 +9,7 @@ import ActivityList from "./Features/Activities/ActivityList";
 import ActivityDetails from "./Features/Activities/ActivityDetails";
 import CreateActivityForm from "./Features/Activities/CreateActivityForm";
 import MyInscriptions from "./Features/Activities/MyInscriptions";
+import NotFound from "./Features/NotFound/NotFound";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           <Route path="/activities/new" element={<CreateActivityForm />} />
           <Route path="/my-inscriptions" element={<MyInscriptions />} />
         </Route>
+        <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>
   );
